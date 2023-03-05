@@ -11,7 +11,7 @@ namespace Catalog.API.Data
 	{
 		public static void SeedData(IMongoCollection<Product> productCollection)
 		{
-			var productExists = productCollection.Find(p => true).Any();
+			 var productExists = productCollection.Find(p => true).Any();
 
 			if (!productExists)
 			{
