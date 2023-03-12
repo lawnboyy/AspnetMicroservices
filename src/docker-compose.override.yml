@@ -53,7 +53,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
-      - "ElasticConfiguration:Uri=http://elasticsearch:9200"
     depends_on:
       - catalogdb
     ports:
@@ -64,6 +63,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings__ConnectionString=basketdb:6379"
+      - "GrpcSettings__DiscountUrl=http://discount.grpc"
     depends_on:
       - basketdb
     ports:
@@ -81,8 +81,12 @@ services:
       - "8002:80"
 
   discount.grpc:
+    container_name: discount.grpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - discountdb
     ports:
-      - "80"
+      - "8003:80"
 
