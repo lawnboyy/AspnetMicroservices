@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ordering.Application.Exceptions
 {
-  public class NotFoundExeption : ApplicationException
+  public class NotFoundException : ApplicationException
   {
-    public NotFoundExeption(string name, object key) : base($"Entity \"{name}\" ({key}) was not found.")
+    public NotFoundException(string name, object key) : base($"Entity \"{name}\" ({key}) was not found.")
     { }
   }
 }
