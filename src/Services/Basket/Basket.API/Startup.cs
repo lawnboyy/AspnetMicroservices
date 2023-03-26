@@ -32,6 +32,7 @@ namespace Basket.API
 
       // General services
       services.AddScoped<IBasketRepository, BasketRepository>();
+      services.AddAutoMapper(typeof(Startup));
 
       // gRPC Configuration
       services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o => o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]));
