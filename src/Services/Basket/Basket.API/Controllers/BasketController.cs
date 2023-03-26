@@ -74,8 +74,10 @@ namespace Basket.API.Controllers
       var eventMessage = _mapper.Map<BasketCheckoutEvent>(basketCheckout);
             
       // Set the total price on the basket checkout event...
-      // NOTE: This will already be set by the automapping above; just setting it explicity here for
-      // clarity I guess.
+      // NOTE: This will already be set by the automapping above; but the checkout event is
+      // coming from the UI so the total price source of truth is in the database which is why
+      // we pull the price from the basket from the database (which includes any discounts that
+      // were applied.
       eventMessage.TotalPrice = basket.TotalPrice;
 
       // Send checkout event to RabbitMQ
